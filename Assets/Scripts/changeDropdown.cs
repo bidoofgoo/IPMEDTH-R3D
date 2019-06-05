@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class changeDropdown : MonoBehaviour
 {
     public Camera cam;
+    public Vector3 cameraPositions;
+    public Vector3 cameraRotations;
     public Dropdown myDropdown;
 
     // Update is called once per frame
