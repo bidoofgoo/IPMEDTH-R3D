@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public class NewBehaviourScript : MonoBehaviour
+public class LinkerhandHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    
     public void SetText(string text)
     {
-        Text txt =transform.Find("Text").GetComponent<Text>();
-        txt.text = text; 
+        Text txt = this.GetComponentInChildren<Text>();
+        txt.text = text;
     }
 }
