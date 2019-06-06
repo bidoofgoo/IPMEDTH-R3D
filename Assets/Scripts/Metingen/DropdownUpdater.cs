@@ -24,7 +24,7 @@ public class DropdownUpdater
     {
         // Voor iedere update
         foreach (ADropdownUpdate update in updates) {
-            update.doTheUpdate(meting);
+            update.dropdownUpdate(meting);
         }
     }
 }
