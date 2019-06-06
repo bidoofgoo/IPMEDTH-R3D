@@ -5,6 +5,12 @@ using UnityEngine;
 public class DropdownUpdater
 {
     /*
+     * Dit is een int die opslaat wat de laatst bekende dropdown was. Zo kan er gedetecteerd worden of er deze
+     * frame wordt overgegaan naar een andere beweging
+    */ 
+    public static int lastDropdown = 100;
+
+    /*
      * Lijst met de verschillende soorten metingen. Per meting staan alle updates die gedaan moeten worden.
      */
     private static List<ADropdownUpdate> updates = new List<ADropdownUpdate>();
@@ -22,6 +28,15 @@ public class DropdownUpdater
     */
     public static void updateToMeting(int meting)
     {
+        // Alleen als de dropdown is aangepast
+        if(meting != lastDropdown)
+        {
+            foreach (ADropdownUpdate update in updates)
+            {
+                update.onDropdownChange(meting);
+            }
+        }
+      
         // Voor iedere update
         foreach (ADropdownUpdate update in updates) {
             update.dropdownUpdate(meting);

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MetingSelectorArm : ADropdownUpdate
 {
@@ -9,10 +10,14 @@ public class MetingSelectorArm : ADropdownUpdate
 
     public override void dropdownUpdate(int meting)
     {
-        if(positions[meting] != null || rotations[meting] != null)
-        {
-            this.transform.position = positions[meting];
-            this.transform.rotation = Quaternion.Euler(rotations[meting]);
-        }
+        int newIndex = (int)Math.Floor((double)(meting / 2));
+        this.transform.position = positions[newIndex];
+        this.transform.rotation = Quaternion.Euler(rotations[newIndex]);
+        
+    }
+
+    public override void onDropdownChange(int meting)
+    {
+        
     }
 }

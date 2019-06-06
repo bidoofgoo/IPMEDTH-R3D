@@ -7,7 +7,7 @@ using System.IO.Ports;
 public class Communicationmanager : MonoBehaviour
 {
     private static SerialPort stream;
-    private static string data;
+    public static string data;
     
     void Start()
     {
@@ -20,7 +20,7 @@ public class Communicationmanager : MonoBehaviour
     void Update()
     {
         data = readFromHardware();
-        Debug.Log(data);
+        Metingen.updateMeting(data);
     }
 
     public string readFromHardware()
@@ -34,4 +34,5 @@ public class Communicationmanager : MonoBehaviour
         }
         
     }
+
 }
