@@ -12,6 +12,7 @@ public class MetingSelectorNorm : ADropdownUpdate
 
     public override void onDropdownChange(int meting)
     {
+        //Norm tonen aan de hand van de dropdownchange
         this.GetComponent<Text>().text = "Norm: " + Metingen.normen[meting] + "°";
     }
 }
