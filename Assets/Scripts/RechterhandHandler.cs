@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LinkerhandHandler : MonoBehaviour
+public class RechterhandHandler : MonoBehaviour
 {
+
+
     public void SetText(string text)
     {
         Text txt = this.GetComponentInChildren<Text>();
         txt.color = Color.black;
-        txt.text = "Linkerhand";
+        txt.text = "Rechterhand";
     }
+
 }
