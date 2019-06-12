@@ -30,11 +30,13 @@ public class DropdownUpdater
     {
         // Alleen als de dropdown is aangepast
         if(meting != lastDropdown)
+
         {
             foreach (ADropdownUpdate update in updates)
             {
                 update.onDropdownChange(meting);
             }
+            lastDropdown = meting;
         }
       
         // Voor iedere update

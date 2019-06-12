@@ -11,7 +11,7 @@ public class Communicationmanager : MonoBehaviour
     
     void Start()
     {
-        stream = new SerialPort("COM5", 9600);
+        stream = new SerialPort("COM6", 9600);
         stream.ReadTimeout = 50;
         stream.Open();
     }

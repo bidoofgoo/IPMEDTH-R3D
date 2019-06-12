@@ -15,7 +15,7 @@ public class Metingen
 
         //foutafhandeling als de replace/split niet goed is uitgevoerd
         if(waardes.Length == 3)
-            huidigeMeting = new Vector3(float.Parse(waardes[0]), float.Parse(waardes[2]) - 180, float.Parse(waardes[1]));
+            huidigeMeting = new Vector3(float.Parse(waardes[0]), float.Parse(waardes[2]), float.Parse(waardes[1]));
         
         Debug.Log(huidigeMeting);
     }

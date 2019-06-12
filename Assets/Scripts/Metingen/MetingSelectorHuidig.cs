@@ -7,6 +7,8 @@ public class MetingSelectorHuidig : ADropdownUpdate
 {
     float baseY = 0;
 
+    public static MetingSelectorHandBeweging hand;
+
     public override void dropdownUpdate(int meting)
     {
         Text text = this.GetComponent<Text>();
@@ -17,12 +19,15 @@ public class MetingSelectorHuidig : ADropdownUpdate
         {
             case 0:
                 newmeting = (int)Mathf.Clamp(-Metingen.huidigeMeting.x, 0, 500);
+                hand.transform.rotation = Quaternion.Euler(new Vector3(newmeting + 90, 90, 0));
                 break;
             case 1:
                 newmeting = (int)Mathf.Clamp(Metingen.huidigeMeting.x, 0, 500);
+                hand.transform.rotation = Quaternion.Euler(new Vector3(-newmeting + 90, 90, 0));
                 break;
             case 2:
                 newmeting = (int)Mathf.Clamp(Metingen.huidigeMeting.y - baseY, 0, 500);
+                hand.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 break;
             case 3:
                 break;
