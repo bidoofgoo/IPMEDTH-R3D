@@ -8,6 +8,10 @@ public class Metingen
     //de normen zijn gekoppeld aan de bewegingen in de dropdown
     public static float[] normen = { 85, 85, 45, 15 };
 
+
+    /*
+     *  Deze functie wordt eens per unity update uitgevoerd. Dit zorgt ervoor dat 
+    */
     public static void updateMeting(string serialData)
     {
         // Maak de waardes uit de uitgelezen data schoon.
@@ -15,7 +19,12 @@ public class Metingen
 
         //foutafhandeling als de replace/split niet goed is uitgevoerd
         if(waardes.Length == 3)
-            huidigeMeting = new Vector3(float.Parse(waardes[0]), float.Parse(waardes[2]), float.Parse(waardes[1]));
+            // Voert een lerp uit die ervoor zorgt dat de waardes over een halve seconde in mate aangepast worden naar de nieuwe waarden.
+            // Dit wordt gedaan om extreme waarden minder extreem te maken.
+            huidigeMeting = Vector3.Lerp(
+                new Vector3(huidigeMeting.x, float.Parse(waardes[2]), huidigeMeting.z), 
+                new Vector3(float.Parse(waardes[0]), float.Parse(waardes[2]), float.Parse(waardes[1])), 
+                Time.deltaTime * 2);
         
         Debug.Log(huidigeMeting);
     }

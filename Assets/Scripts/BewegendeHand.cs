@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MetingSelectorHandBeweging : MonoBehaviour
+public class BewegendeHand : MonoBehaviour
 {
     public static float currentRot = 0;
 
