@@ -8,7 +8,15 @@ public class HandSelector : MonoBehaviour
     //Aanmaken variabele
     public bool links;
     public HandSelector otherHandButton;
-    public static bool handSelectedLinks;
+    public static bool handSelectedLinks = true;
+
+    private void Start()
+    {
+        if (this.links)
+        {
+            onClick();
+        }
+    }
 
     public void setColor(Color color)
     {
