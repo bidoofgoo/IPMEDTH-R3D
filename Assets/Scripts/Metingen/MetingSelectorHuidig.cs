@@ -68,13 +68,13 @@ public class MetingSelectorHuidig : ADropdownUpdate
                 }
                 if (HandSelector.handSelectedLinks)
                 {
-                    newmeting = -Mathf.Clamp(shifted, 0, 180);
-                    hand.transform.rotation = Quaternion.Euler(new Vector3(0, 0, newmeting));
+                    newmeting = Mathf.Clamp(shifted, 0, 180);
+                    hand.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -newmeting));
                 }
                 else
                 {
-                    newmeting = Mathf.Clamp(shifted, -180, 0);
-                    hand.transform.rotation = Quaternion.Euler(new Vector3(0, 180, newmeting));
+                    newmeting = -Mathf.Clamp(shifted, -180, 0);
+                    hand.transform.rotation = Quaternion.Euler(new Vector3(0, 180, -newmeting));
                 }
                 break;
             default:
