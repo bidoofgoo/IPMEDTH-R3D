@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MetingSelectorMaximum : ADropdownUpdate
 {
@@ -9,20 +10,35 @@ public class MetingSelectorMaximum : ADropdownUpdate
 
     public override void dropdownUpdate(int meting)
     {
-        switch (meting)
-        {
-            case 0:
-                
-                break;
-
-            default:
-                break;
-        }
+        
     }
 
     public override void onDropdownChange(int meting)
     {
-       
+        max = 0;
+        updateText();
+    }
+
+    public void setHuidig(int huidig)
+    {
+        if(huidig > max)
+        {
+            max = huidig;
+            updateText();
+        }
+    }
+
+    private void updateText()
+    {
+        if (links)
+        {
+            GetComponent<Text>().text = "Maximum links: " + max + "°";
+        }
+        else
+        {
+            GetComponent<Text>().text = "Maximum rechts: " + max + "°";
+        }
+
     }
 
 }

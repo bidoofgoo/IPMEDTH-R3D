@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 370575009}
   - component: {fileID: 370575008}
   m_Layer: 5
-  m_Name: MinimumLinks
+  m_Name: MaximumRechts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2024,7 +2024,7 @@ GameObject:
   - component: {fileID: 1440817545}
   - component: {fileID: 1440817547}
   m_Layer: 5
-  m_Name: MinimumRechts
+  m_Name: MaximumLinks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2103,7 +2103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d069e198f8399e47ba1a059cbae0401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  links: 0
+  links: 1
 --- !u!1 &1564283374
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,6 +2480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 178c048e3839139489a7134b600f316d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxLinks: {fileID: 1440817547}
+  maxRechts: {fileID: 370575008}
 --- !u!1 &2016048770
 GameObject:
   m_ObjectHideFlags: 0
