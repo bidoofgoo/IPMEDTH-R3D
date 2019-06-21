@@ -5,14 +5,20 @@ using UnityEngine.UI;
 
 public class MetingSelectorHuidig : ADropdownUpdate
 {
+    // Callibratie variabele van de meting op de y as
     float baseY = 0;
 
     // Referentie naar het hand gameobject
     public static BewegendeHand hand;
+    // Referenties naar maximum links object en maximum rechts object
     public MetingSelectorMaximum maxLinks;
     public MetingSelectorMaximum maxRechts;
 
 
+    /*
+     * Update die uitvoerd tijdens een update met de huidige meting als parameter
+     * Past de huidige meting aan op het scherm, past de visualisatie toe op de hand en stelt de maximum waardes in.
+    */ 
     public override void dropdownUpdate(int meting)
     {
         Text text = this.GetComponent<Text>();
@@ -92,8 +98,10 @@ public class MetingSelectorHuidig : ADropdownUpdate
         }
     }
 
+    // Deze functie roept aan zodra de dropdown veranderd van waarde. (dus als er een andere oefening wordt gesoorteerd)
     public override void onDropdownChange(int meting)
     {
+        // Calibreer de y waarde van de handschoen.
         baseY = Metingen.huidigeMeting.y;
     }
 }

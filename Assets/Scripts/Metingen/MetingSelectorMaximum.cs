@@ -5,20 +5,20 @@ using UnityEngine.UI;
 
 public class MetingSelectorMaximum : ADropdownUpdate
 {
+    // Kijk of het gaat om de max display van de linker of rechterhand
     public bool links = true;
+    // De huidige max
     int max = 0;
 
-    public override void dropdownUpdate(int meting)
-    {
-        
-    }
-
+    // Zodra er een andere oefening wordt geselecteerd, zet de maximum links en rechts terug naar 0.
     public override void onDropdownChange(int meting)
     {
         max = 0;
         updateText();
     }
 
+    // Als de huidige meting dit getal is, kijk dan of het groter is dan het maximum.
+    // In dat geval is huidig nu het nieuwe maximum.
     public void setHuidig(int huidig)
     {
         if(huidig > max)
@@ -28,6 +28,7 @@ public class MetingSelectorMaximum : ADropdownUpdate
         }
     }
 
+    // Update de tekst naar het huidige maximum.
     private void updateText()
     {
         if (links)
@@ -41,4 +42,5 @@ public class MetingSelectorMaximum : ADropdownUpdate
 
     }
 
+    public override void dropdownUpdate(int meting) { }
 }

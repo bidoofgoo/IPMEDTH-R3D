@@ -10,6 +10,7 @@ public class MetingSelectorNorm : ADropdownUpdate
         
     }
 
+    // Weergeeft de norm van de huidige oefening.
     public override void onDropdownChange(int meting)
     {
         //Norm tonen aan de hand van de dropdownchange
