@@ -6,15 +6,18 @@ using System.IO.Ports;
 
 public class Communicationmanager : MonoBehaviour
 {
-    private static SerialPort stream;
-    public static string data;
+    private SerialPort stream;
+    public static string data = "0,0,0";
+
+    public int currentPortID = 0;
+    private float timer = 0;
+    private float wrongCount = 0;
     
     // Start de communicatie met de bluetooth op de com6 port
     void Start()
     {
-        stream = new SerialPort("COM6", 9600);
-        stream.ReadTimeout = 50;
-        stream.Open();
+        openSerial();
+        
     }
 
     // Update is called once per frame
@@ -22,7 +25,19 @@ public class Communicationmanager : MonoBehaviour
     {
         // Haal eens per frame de data uit de hardware op
         data = readFromHardware();
-        Metingen.updateMeting(data);
+        if (serialDataValidator(data))
+        {
+            wrongCount = 0;
+            Metingen.updateMeting(data);
+        }
+        else {
+            tryNextComPort();
+        }
+
+        if(timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
     }
 
     /*
@@ -33,10 +48,67 @@ public class Communicationmanager : MonoBehaviour
         try{
             return stream.ReadLine();
         }
-        catch
+        catch(Exception exceptio)
         {
+            Debug.Log(exceptio);
+            tryNextComPort();
             return data;
         }
+    }
+
+    // Functie die de binnengekomen data valideerd en anders naar de volgende com port gaat.
+    private bool serialDataValidator(string data)
+    {
+        // Maak de waardes uit de uitgelezen data schoon.
+        string[] waardes = data.Replace(", ", ";").Replace('.', ',').Split(';');
+
+        //foutafhandeling als de replace/split niet goed is uitgevoerd
+        if (waardes.Length == 3)
+        {
+            return true;
+        } 
+        return false;
+    }
+
+    // Functie die ervoor zorgt dat er een andere com-port wordt geselecteerd.
+    private void tryNextComPort()
+    {
+        // Mag pas een andere port selecteren als het 10 keer fout is gegaan eigenlijk. 
+        // (eerste reads uit de seriele verbindign gaan meestal verkeerd)
+        if(wrongCount > 10)
+        {
+            wrongCount = 0;
+            if (stream.IsOpen)
+            {
+                stream.Close();
+            }
+            if (timer <= 0)
+            {
+                if (currentPortID < SerialPort.GetPortNames().Length - 1)
+                {
+                    currentPortID++;
+                }
+                else
+                {
+                    currentPortID = 0;
+                }
+                openSerial();
+            }
+        }
+        else
+        {
+            wrongCount++;
+        }
+    }
+
+    // Functie die serial opent
+    private void openSerial()
+    {
+        timer = 1;
+        stream = new SerialPort("\\.\\" + SerialPort.GetPortNames()[currentPortID], 9600);
+        Debug.Log("Opening: " + "\\.\\" + SerialPort.GetPortNames()[currentPortID]);
+        stream.ReadTimeout = 50;
+        stream.Open();
     }
 
 }

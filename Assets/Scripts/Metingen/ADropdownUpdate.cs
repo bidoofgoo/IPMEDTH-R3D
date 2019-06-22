@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Abstracte klasse waarin wordt bijgehouden welke elementen veranderen zodra er een andere oefening wordt geselecteerd
 public abstract class ADropdownUpdate : MonoBehaviour
 {
     // Update die iedere update wordt uitgevoerd als het deze klasse extend, met als parameter de huidige meting
