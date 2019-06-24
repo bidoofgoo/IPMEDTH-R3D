@@ -16,8 +16,7 @@ public class Communicationmanager : MonoBehaviour
     // Start de communicatie met de bluetooth op de com6 port
     void Start()
     {
-        openSerial();
-        
+        openSerial();   
     }
 
     // Update is called once per frame
@@ -57,8 +56,14 @@ public class Communicationmanager : MonoBehaviour
     }
 
     // Functie die de binnengekomen data valideerd en anders naar de volgende com port gaat.
-    private bool serialDataValidator(string data)
+    public static bool serialDataValidator(string data)
     {
+        // Kijk of de data bestaat.
+        if(data == null)
+        {
+            return false;
+        }
+
         // Maak de waardes uit de uitgelezen data schoon.
         string[] waardes = data.Replace(", ", ";").Replace('.', ',').Split(';');
 

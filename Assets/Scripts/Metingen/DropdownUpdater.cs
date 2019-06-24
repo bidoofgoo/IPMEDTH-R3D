@@ -35,6 +35,7 @@ public class DropdownUpdater
             foreach (ADropdownUpdate update in updates)
             {
                 update.onDropdownChange(meting);
+                Debug.Log(((meting == 0) ? "palmair" : (meting == 1) ? "dorsaal" : (meting == 2) ? "ulnair" : "radiaal") + " geselecteerd");
             }
             lastDropdown = meting;
         }

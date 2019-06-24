@@ -13,6 +13,8 @@ public class ChangeDropdown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (myDropdown.value > 3 || myDropdown.value < 0)
+            Debug.Log("Incorrect dropdown value");
         // Pas iedere frame de meting aan.
         DropdownUpdater.updateToMeting(myDropdown.value);
     }
